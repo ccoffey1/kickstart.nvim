@@ -32,6 +32,27 @@ return {
     opts = {
       -- See Configuration section for options
     },
+    init = function()
+      local copilotChat = require 'CopilotChat'
+      vim.keymap.set('n', '<leader>ccc', function()
+        copilotChat.open()
+      end, { desc = 'CopilotChat - Chat' })
+      vim.keymap.set('n', '<leader>ccr', function()
+        copilotChat.reset()
+      end, { desc = 'CopilotChat - Reset' })
+      vim.keymap.set('n', '<leader>ccp', function()
+        local actions = require 'CopilotChat.actions'
+        require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
+      end, { desc = 'CopilotChat - Prompt actions' })
+      vim.keymap.set('n', '<leader>ccq', function()
+        local input = vim.fn.input 'Quick Chat: '
+        if input ~= '' then
+          copilotChat.ask(input, {
+            selection = require('CopilotChat.select').buffer,
+          })
+        end
+      end, { desc = 'CopilotChat - Quick chat' })
+    end,
     -- See Commands section for default commands if you want to lazy load on them
   },
   {
