@@ -1,0 +1,17 @@
+-- Define custom action
+-- TODO: This doesn't work! I wanna make a custom action to find all TODOs on my current branch and ignore all others.
+-- local function list_unchecked_tasks()
+--   local cmd = { 'grep', '-rnE', '\\- \\[ \\] \\w+', '.' }
+--   require('telescope.pickers')
+--     .new({
+--       finder = require('telescope.finders').new_oneshot_job(cmd),
+--       sorter = require('telescope.sorters').get_generic_fuzzy_sorter(),
+--     })
+--     :find()
+-- end
+--
+-- -- Add a Neovim command to call it
+-- vim.api.nvim_create_user_command('TelescopeUncheckedTasks', list_unchecked_tasks, {})
+-- vim.keymap.set('n', '<leader>ot', ':TelescopeUncheckedTasks<CR>')
+--
+return {}

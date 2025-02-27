@@ -20,9 +20,6 @@ return {
     end,
   },
   {
-    'rhysd/git-messenger.vim',
-  },
-  {
     'CopilotC-Nvim/CopilotChat.nvim',
     dependencies = {
       { 'github/copilot.vim' }, -- or zbirenbaum/copilot.lua
@@ -34,17 +31,18 @@ return {
     },
     init = function()
       local copilotChat = require 'CopilotChat'
-      vim.keymap.set('n', '<leader>ccc', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>ccc', function()
         copilotChat.open()
+        vim.cmd 'startinsert'
       end, { desc = 'CopilotChat - Chat' })
-      vim.keymap.set('n', '<leader>ccr', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>ccr', function()
         copilotChat.reset()
       end, { desc = 'CopilotChat - Reset' })
-      vim.keymap.set('n', '<leader>ccp', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>ccp', function()
         local actions = require 'CopilotChat.actions'
         require('CopilotChat.integrations.telescope').pick(actions.prompt_actions())
       end, { desc = 'CopilotChat - Prompt actions' })
-      vim.keymap.set('n', '<leader>ccq', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>ccq', function()
         local input = vim.fn.input 'Quick Chat: '
         if input ~= '' then
           copilotChat.ask(input, {
@@ -88,11 +86,10 @@ return {
       harpoon:setup()
       vim.keymap.set('n', '<leader>a', function()
         harpoon:list():add()
-      end)
+      end, { desc = 'Harpoon - Add' })
       vim.keymap.set('n', '<C-e>', function()
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end)
-
       vim.keymap.set('n', '<C-h>', function()
         harpoon:list():select(1)
       end)
