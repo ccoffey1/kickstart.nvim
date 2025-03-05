@@ -4,9 +4,6 @@
 -- See the kickstart.nvim README for more information
 return {
   {
-    'olrtg/nvim-emmet',
-  },
-  {
     'github/copilot.vim',
     config = function()
       vim.keymap.set('i', '<C-J>', 'copilot#Accept("\\<CR>")', {
