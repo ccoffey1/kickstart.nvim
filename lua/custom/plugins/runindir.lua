@@ -9,6 +9,6 @@ local function execute_in_current_directory()
 end
 
 vim.api.nvim_create_user_command('ExecuteCmdInCurrentDirectory', execute_in_current_directory, {})
-vim.keymap.set('n', '<leader>e', ':ExecuteCmdInCurrentDirectory<CR>', { desc = '[E]xecute in current directory' })
+vim.keymap.set('n', '<leader>x', ':ExecuteCmdInCurrentDirectory<CR>', { desc = 'E[x]ecute in current directory' })
 
 return {}
